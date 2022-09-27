@@ -45,7 +45,7 @@ class Bird(Base):
         
     __tablename__ = "birds"
 
-    uuid = Column(String(36))
+    uuid = Column(String(36),default = generate_uuid())
     id = Column(String(36), primary_key=True)
     name = Column(String(36))
     short = Column(String(1000))
@@ -77,6 +77,8 @@ class Bird(Base):
 
     def create(self, obj: BirdSchema):
         try:
+            # print(type(obj))
+            # return
             obj_in_db = self.get_by(name=obj.name)
             if obj_in_db is None:
                 print(f"No {self.model} was found with name {obj.name}!")
