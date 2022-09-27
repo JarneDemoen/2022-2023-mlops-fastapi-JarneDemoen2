@@ -11,7 +11,7 @@ class User(Base):
     def generate_uuid():
         return str(uuid.uuid4())
 
-    def __init__(self,id, name, locationOfResidence, age, gender, registrationDate, uuid = generate_uuid()):
+    def __init__(self,id=None, name=None, locationOfResidence=None, age=None, gender=None, registrationDate=None, uuid = generate_uuid()):
         self.uuid = uuid
         self.id = id
         self.name = name
