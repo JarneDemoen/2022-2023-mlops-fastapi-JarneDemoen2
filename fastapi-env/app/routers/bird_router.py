@@ -46,3 +46,25 @@ def fill_database():
             raise HTTPException(status_code=400, detail="Something went wrong here")
     return birds
 
+@router.put("/{id}")
+def update_bird(id: str, bird: Bird):
+    if repo.update_bird(id, bird):
+        return responses.Response(status_code=status.HTTP_204_NO_CONTENT)
+    else:
+        raise HTTPException(status_code=400, detail="Something went wrong here")
+
+@router.get("/{id}")
+def get_bird(id: str):
+    bird = repo.get_by(id=id)
+    if bird is None:
+        raise HTTPException(status_code=400, detail="Something went wrong here")
+    return bird
+
+@router.get("{property}/{value}")
+def get_birds_by_property(property: str, value: str):
+    birds = repo.get_many_birds_based_on_property(property, value)
+    if birds is None:
+        raise HTTPException(status_code=400, detail="Something went wrong here")
+    return birds
+
+

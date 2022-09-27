@@ -29,7 +29,7 @@ class Bird(Base):
     def generate_uuid():
         return str(uuid.uuid4())
 
-    def __init__(self,id=None, name=None, short=None, image=None, recon=None, food=None, see=None, uuid = generate_uuid()):
+    def __init__(self,id=None, name=None, short=None, image=None, recon=None, food=None, see=None, uuid = None):
         self.uuid = uuid
         self.id = id
         self.name = name
